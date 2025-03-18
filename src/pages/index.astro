@@ -15,6 +15,7 @@ import NextIcon from '../components/icons/Next.astro';
 import TailwindIcon from '../components/icons/Tailwind.astro';
 import AstroIcon from '../components/icons/AstroI.astro';
 import CodeIcon from '../components/icons/Code.astro';
+import JavaScriptIcon from '../components/icons/JavaScript.astro';
 
 const tags = [
     {
@@ -25,6 +26,11 @@ const tags = [
     {
         name: "Sql Server",
         icon: SQLServerIcon,
+		level: "Avanzado"
+    },
+	{
+        name: "JavaScript",
+        icon: JavaScriptIcon,
 		level: "Avanzado"
     },
     {
@@ -44,7 +50,7 @@ const tags = [
     },
 ]
 
-const techProject1 = tags.filter(tag => tag.name !== "Astro")
+const techProject1 = tags.filter(tag => tag.name !== "Astro" && tag.name !== "JavaScript")
 
 ---
 
@@ -63,7 +69,7 @@ const techProject1 = tags.filter(tag => tag.name !== "Astro")
 				<span class="opacity-90">y Estudiante de Programación. De Córdoba, Argentina. Apasionado en Aplicaciones Web e Innovaciones Tecnológicas.</span>
 			</h2>
 
-			<nav class="flex gap-x-2 lg:gap-x-4 mt-6 lg:justify-start justify-center">
+			<nav class="flex flex-wrap gap-2 lg:gap-x-4 mt-6 lg:justify-start justify-center">
 				<SocialPill href="https://www.linkedin.com/in/gino-carabelli-garc%C3%ADa-726726247/">
 					<LinekdInIcon class="size-4 lg:size-6"/>
 					<span class="text-sm lg:text-lg">LinkedIn</span>
@@ -100,13 +106,13 @@ const techProject1 = tags.filter(tag => tag.name !== "Astro")
 				<CodeIcon class="size-12"/>
 				Habilidades
 			</h2>
-			<ul class="w-full justify-center flex gap-x-5 lg:gap-x-15 overflow-x-auto">
+			<ul class="w-full justify-center flex flex-wrap gap-10 overflow-x-auto">
 				{
 					tags.map(tag => (
 						
 						<li class="flex flex-col gap-y-3 justify-center items-center">
 							<tag.icon class="size-12"/>
-							<p class="text-sm lg:text-xl">{tag.name}</p>
+							<p class="text-sm lg:text-lg">{tag.name}</p>
 							<p class={`
 								${tag.level === "Avanzado" 
 									? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300" 
