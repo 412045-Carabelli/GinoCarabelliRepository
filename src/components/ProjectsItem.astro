@@ -1,0 +1,38 @@
+---
+import CSharpIcon from './icons/CSharp.astro';
+import NextIcon from './icons/Next.astro';
+import SQLServerIcon from './icons/SQLServer.astro';
+import TailwindIcon from './icons/Tailwind.astro';
+
+const { title, description, src, href, tags } = Astro.props
+
+export interface Tag {
+    name: string;
+    icon: any;
+}
+
+export interface Props {
+    title: string;
+    description: string;
+    src: string;
+    href: string;
+    tags: Tag[];
+}
+---
+
+<a {...Astro.props} href={href} target="_blank" class="bg-gradient-to-bl from-gray-500 to-gray-800 cursor-pointer w-full relative overflow-hidden flex flex-col items-start bg-white border-2 border border-gray-900 border-opacity-10 rounded-lg group shadow-sm md:flex-row h-[350px] dark:hover:bg-gradient-to-bl dark:hover:from-gray-600 dark:hover:to-gray-700 transition dark:border-gray-700">
+    <img src={src} alt={title} class="absolute w-100 h-60 lg:w-120 lg:h-70 -right-3 -bottom-10 rounded-lg shadow-2xl group-hover:scale-110 transition">
+    <ul class="absolute left-5 bottom-5 flex gap-x-5 opacity-60">
+        {
+            tags.map(tag => (
+                <li>
+                    <tag.icon class="size-6 lg:size-8"/>
+                </li>
+            ))
+        }
+    </ul>
+    <div class="w-full flex flex-col justify-between p-4 leading-normal">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
+    </div>
+</a>
