@@ -20,7 +20,7 @@ export interface Props {
 }
 ---
 
-<a {...Astro.props} href={href} target="_blank" class="bg-gradient-to-bl from-gray-500 to-gray-800 cursor-pointer w-full relative overflow-hidden flex flex-col items-start bg-white border-2 border border-gray-900 border-opacity-10 rounded-lg group shadow-sm md:flex-row h-[350px] dark:hover:bg-gradient-to-bl dark:hover:from-gray-600 dark:hover:to-gray-700 transition dark:border-gray-700">
+<a {...Astro.props} href={href} target="_blank" class="bg-gradient-to-bl from-gray-500 to-gray-800 cursor-pointer w-full relative overflow-hidden flex flex-col items-start bg-white border-2 border border-opacity-10 rounded-lg group shadow-sm md:flex-row h-[350px] dark:hover:bg-gradient-to-bl dark:hover:from-gray-600 dark:hover:to-gray-700 transition border-gray-700">
     <img src={src} alt={title} class="absolute w-100 h-60 lg:w-120 lg:h-70 -right-3 -bottom-10 rounded-lg shadow-2xl group-hover:scale-110 transition">
     <ul class="absolute left-5 bottom-5 flex gap-x-5 opacity-60">
         {
