@@ -64,32 +64,32 @@ const techProject1 = tags.filter(tag => tag.name !== "Astro" && tag.name !== "Ja
 				<img src="/profile-dark.png" alt="Gino Carabelli" class="w-[200px] lg:w-[100px] pb-5">
 			</div>
 			<h1 class="text-white text-5xl font-bold flex flex-col lg:flex-row text-center lg:justify-start pb-10 gap-5">Soy Gino Carabelli <div class="flex justify-center items-center"><Badge>Disponible para trabajar</Badge></div></h1>
-			<h2 class="text-md lg:text-2xl text-pretty">
+			<h2 class="text-md lg:text-2xl text-pretty text-white">
 				<span class="opacity-90">+1 año de experiencia.</span> <span class="text-orange-300 opacity-100">Full Stack Developer</span>
 				<span class="opacity-90">y Estudiante de Programación. De Córdoba, Argentina. Apasionado en Aplicaciones Web e Innovaciones Tecnológicas.</span>
 			</h2>
 
 			<nav class="flex flex-wrap gap-2 lg:gap-x-4 mt-6 lg:justify-start justify-center">
 				<SocialPill href="https://www.linkedin.com/in/gino-carabelli-garc%C3%ADa-726726247/">
-					<LinekdInIcon class="size-4 lg:size-6"/>
-					<span class="text-sm lg:text-lg">LinkedIn</span>
+					<LinekdInIcon class="size-4 lg:size-6 text-white"/>
+					<span class="text-sm lg:text-lg text-white">LinkedIn</span>
 				</SocialPill>
 				<SocialPill href="https://github.com/ginocarabelli">
-					<GithubIcon class="size-4 lg:size-6"/>
-					<span class="text-sm lg:text-lg">Github</span>
+					<GithubIcon class="size-4 lg:size-6 text-white"/>
+					<span class="text-sm lg:text-lg text-white">Github</span>
 				</SocialPill>
 				<SocialPill>
 					<MailIcon class="size-4 lg:size-6"/>
-					<span class="text-sm lg:text-lg">ginocarabellimd@gmail.com</span>
+					<span class="text-sm lg:text-lg text-white">ginocarabellimd@gmail.com</span>
 				</SocialPill>
 			</nav>
 		</SectionContainer>
 		<SectionContainer id="about" class="pt-10 px-6 lg:px-0 pb-14">
-			<h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
+			<h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center text-white">
 				<UserIcon class="size-12"/>
 				Sobre mí
 			</h2>
-			<p class="text-md lg:text-xl text-pretty">
+			<p class="text-md lg:text-xl text-pretty text-white">
 				<span class="opacity-90">Tengo 19 años, soy estudiante de la </span><span class="text-blue-300">Tecnicatura Superior en Programación</span>
 				<span class="opacity-90">en la <span class="text-blue-300">UTN FRC</span>, me dedico al voleibol de forma semi-profesional y trabajo
 				como editor de video de forma freelance hace mas de 2 años. Me apasiona desarrollar</span>
@@ -102,7 +102,7 @@ const techProject1 = tags.filter(tag => tag.name !== "Astro" && tag.name !== "Ja
 			</p>
 		</SectionContainer>
 		<SectionContainer id="hardSkills" class="pt-10 px-6 lg:px-0 pb-14">
-			<h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
+			<h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center text-white">
 				<CodeIcon class="size-12"/>
 				Habilidades
 			</h2>
@@ -112,13 +112,13 @@ const techProject1 = tags.filter(tag => tag.name !== "Astro" && tag.name !== "Ja
 						
 						<li class="flex flex-col gap-y-3 justify-center items-center">
 							<tag.icon class="size-12"/>
-							<p class="text-sm lg:text-lg">{tag.name}</p>
+							<p class="text-sm lg:text-lg text-white">{tag.name}</p>
 							<p class={`
 								${tag.level === "Avanzado" 
-									? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300" 
+									? "bg-red-800 text-red-300" 
 									: tag.level === "Intermedio" 
-									? "bg-yellow-800 dark:bg-yellow-900 dark:text-yellow-300" 
-									: "bg-green-800 dark:bg-green-900 dark:text-green-300"
+									? "bg-yellow-800 text-yellow-300" 
+									: "bg-green-800 text-green-300"
 								} 
 								text-xs lg:text-sm font-medium mx-auto px-2.5 py-0.5 rounded-sm
 							`}>
