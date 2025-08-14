@@ -16,6 +16,13 @@ import TailwindIcon from '../components/icons/Tailwind.astro';
 import AstroIcon from '../components/icons/AstroI.astro';
 import CodeIcon from '../components/icons/Code.astro';
 import JavaScriptIcon from '../components/icons/JavaScript.astro';
+import AngularIcon from '../components/icons/Angular.astro';
+import UMLIcon from '../components/icons/UML.astro';
+import New4JIcon from '../components/icons/New4j.astro';
+import RedisIcon from '../components/icons/Redis.astro';
+import JUnitIcon from '../components/icons/JUnit.astro';
+import SpringIcon from '../components/icons/Spring.astro';
+
 
 const tags = [
     {
@@ -26,11 +33,6 @@ const tags = [
     {
         name: "Sql Server",
         icon: SQLServerIcon,
-		level: "Avanzado"
-    },
-	{
-        name: "JavaScript",
-        icon: JavaScriptIcon,
 		level: "Avanzado"
     },
     {
@@ -48,10 +50,41 @@ const tags = [
         icon: AstroIcon,
 		level: "Básico"
     },
+	{
+		name: "Angular",
+		icon: AngularIcon,
+		level: "Avanzado"
+	},
+	{
+		name: "Spring Boot",
+		icon: SpringIcon,
+		level: "Avanzado"
+	},
+	{
+		name: "JUnit 5",
+		icon: JUnitIcon,
+		level: "Intermedio"
+	},
+	{
+		name: "UML",
+		icon: UMLIcon,
+		level: "Intermedio"
+	},
+	{
+		name: "New4J",
+		icon: New4JIcon,
+		level: "Intermedio"
+	},
+	{
+		name: "Redis",
+		icon: RedisIcon,
+		level: "Intermedio"
+	},
 ]
 
-const techProject1 = tags.filter(tag => tag.name !== "Astro" && tag.name !== "JavaScript")
-
+const techProject1 = [tags[0], tags[1], tags[2], tags[3]]
+const techProject2 = [tags[5],tags[6],tags[7],tags[8]]
+const techProject3 = [tags[2], tags[6], tags[7], tags[8]]
 ---
 
 <Layout 
@@ -91,8 +124,7 @@ const techProject1 = tags.filter(tag => tag.name !== "Astro" && tag.name !== "Ja
 			</h2>
 			<p class="text-md lg:text-xl text-pretty text-white">
 				<span class="opacity-90">Tengo 19 años, soy estudiante de la </span><span class="text-blue-300">Tecnicatura Superior en Programación</span>
-				<span class="opacity-90">en la <span class="text-blue-300">UTN FRC</span>, me dedico al voleibol de forma semi-profesional y trabajo
-				como editor de video de forma freelance hace mas de 2 años. Me apasiona desarrollar</span>
+				<span class="opacity-90">en la <span class="text-blue-300">UTN FRC</span>, me apasiona desarrollar</span>
 				<span class="text-orange-300">Soluciones Tecnológicas </span><span class="opacity-90">que aporten valor a la sociedad y trabajar
 				en equipo buscando lograr siempre un ambiente de trabajo cómodo, sano y seguro. Actualmente cuento sin
 				experiencia laboral por lo tanto mediante mis proyectos personales adquiero las habilidades
@@ -132,6 +164,20 @@ const techProject1 = tags.filter(tag => tag.name !== "Astro" && tag.name !== "Ja
 		<SectionContainer id="projects" class="pt-10 px-6 lg:px-0 pb-14">
 			<ProjectsContainer>
 				<ul class="flex flex-col gap-y-5">
+					<ProjectsItem
+						tags={techProject2}
+						title="T.E.G"
+						description="Juego de mesa T.E.G"
+						src="/teg.png"
+						href="https://github.com/2025-P3-FE-2W1/tpi-teg-grupo-11"
+					/>
+					<ProjectsItem
+						tags={techProject3}
+						title="iPhoneTrade"
+						description="Sistema de gestión de stock, transacciones, cotizaciones y reportes para negocios de compra y venta de iPhone"
+						src="/iphone-trade.png"
+						href="https://github.com/ginocarabelli/iphone-trade/"
+					/>
 					<ProjectsItem
 					tags={techProject1}
 					title="TJournal"
