@@ -145,17 +145,6 @@ const techProject3 = [tags[2], tags[6], tags[7], tags[8]]
 						<li class="flex flex-col gap-y-3 justify-center items-center">
 							<tag.icon class="size-12"/>
 							<p class="text-sm lg:text-lg text-white">{tag.name}</p>
-							<p class={`
-								${tag.level === "Avanzado" 
-									? "bg-red-800 text-red-300" 
-									: tag.level === "Intermedio" 
-									? "bg-yellow-800 text-yellow-300" 
-									: "bg-green-800 text-green-300"
-								} 
-								text-xs lg:text-sm font-medium mx-auto px-2.5 py-0.5 rounded-sm
-							`}>
-								{tag.level}
-							</p>
 						</li>
 					))
 				}
