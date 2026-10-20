@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Activar mi QR</title>
+  <link rel="stylesheet" href="activar.css">
+</head>
+<body>
+  <main>
+    <h1>Tu QR</h1>
+    <p class="sub">Elegí a dónde lleva tu QR. Podés cambiarlo cuando quieras.</p>
+
+    <div class="modo" role="radiogroup" aria-label="Acción">
+      <label><input type="radio" name="modo" value="activar" checked> Activar</label>
+      <label><input type="radio" name="modo" value="editar"> Cambiar link</label>
+    </div>
+
+    <form id="form" novalidate>
+      <label for="codigo">Código del QR</label>
+      <input id="codigo" name="codigo" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="16" required>
+
+      <label for="activacion">Código de activación</label>
+      <input id="activacion" name="activacion" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="32" placeholder="XXXX-XXXX-XXXX" required>
+      <small>Está impreso en el sticker o en la tarjeta.</small>
+
+      <label for="url">Link de destino</label>
+      <input id="url" name="url" type="url" inputmode="url" autocomplete="off" maxlength="2048" placeholder="https://..." required>
+
+      <button id="enviar" type="submit">Activar</button>
+      <p id="mensaje" role="status" aria-live="polite" hidden></p>
+    </form>
+  </main>
+  <script src="activar.js"></script>
+</body>
+</html>
