@@ -4,7 +4,9 @@ export async function rpc(env, nombre, args) {
   if (!env.SUPABASE_URL || !env.SUPABASE_ANON_KEY) {
     throw new Error('Faltan SUPABASE_URL / SUPABASE_ANON_KEY');
   }
-  const res = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, '')}/rest/v1/rpc/${nombre}`, {
+  // Solo el origen: tolera que la variable traiga una ruta de más (/rest/v1, /, etc.).
+  const base = new URL(env.SUPABASE_URL.trim()).origin;
+  const res = await fetch(`${base}/rest/v1/rpc/${nombre}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

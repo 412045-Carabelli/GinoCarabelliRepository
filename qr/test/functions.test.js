@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import redirigir from '../netlify/functions/r.js';
 import api from '../netlify/functions/api.js';
 
-process.env.SUPABASE_URL = 'https://x.supabase.co';
+process.env.SUPABASE_URL = 'https://x.supabase.co/rest/v1/';
 process.env.SUPABASE_ANON_KEY = 'anon';
 let llamadas;
 const mockRpc = (respuesta, status = 200) => {
