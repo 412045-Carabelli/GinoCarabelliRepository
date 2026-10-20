@@ -1,0 +1,8 @@
+node_modules/
+.env
+.env.*
+!.env.example
+# Lotes generados: contienen los códigos de activación en claro
+lotes/
+backups/
+.wrangler/

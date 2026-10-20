@@ -1,0 +1,23 @@
+{
+  "name": "qr-dinamicos",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "QRs dinámicos con activación (Supabase + Cloudflare Pages)",
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "generar": "node scripts/generar-lote.js",
+    "backup": "node scripts/backup.js",
+    "test": "node --test \"test/*.test.js\""
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "jsqr": "^1.4.0",
+    "pngjs": "^7.0.0"
+  }
+}
