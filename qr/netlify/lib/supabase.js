@@ -9,11 +9,12 @@ export async function rpc(env, nombre, args) {
     headers: {
       'Content-Type': 'application/json',
       apikey: env.SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
+      // Las claves nuevas (sb_publishable_...) no son JWT: solo van en apikey.
+      ...(env.SUPABASE_ANON_KEY.startsWith('eyJ') && { Authorization: `Bearer ${env.SUPABASE_ANON_KEY}` }),
     },
     body: JSON.stringify(args),
   });
-  if (!res.ok) throw new Error(`Supabase respondió ${res.status}`);
+  if (!res.ok) throw new Error(`Supabase respondió ${res.status}: ${(await res.text()).slice(0, 200)}`);
   return res.json();
 }
 
