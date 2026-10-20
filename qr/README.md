@@ -47,6 +47,12 @@ Genera `lotes/prueba-1/` con un PNG por QR y `lote-prueba-1.csv` (`codigo,activa
 Opciones: `--formato png|svg` (png, 1000 px) · `--nivel L|M|Q|H` (Q) · `--salida lotes` · `--dry-run` (genera archivos sin tocar Supabase).
 Los QR llevan 4 módulos de margen y corrección de errores nivel Q; con URLs de ~30 caracteres quedan en versión 3 (29×29 módulos), así que a 2 cm de lado cada módulo mide ~0,7 mm: escanean bien. Evitá bajar de ~1,5 cm y no recortes el margen blanco.
 
+### PDF para imprimir
+```bash
+node scripts/generar-pdf.js --lote prueba-1
+```
+Crea `lotes/prueba-1/lote-prueba-1.pdf`: hojas A4 con los QRs en grilla (4 columnas, 35 mm por defecto) y debajo de cada uno su código y el código de activación. Opciones: `--columnas`, `--tam` (mm), `--sin-activacion` (si el código de activación va impreso aparte), `--sin-guias`. Al imprimir, usá **tamaño real / 100 %** (no "ajustar a página"). El PDF contiene los códigos en claro: tratalo como el CSV.
+
 ### 4. Anti-pausa
 El plan gratis pausa el proyecto tras ~1 semana sin actividad. En GitHub: *Settings → Secrets and variables → Actions* → crear `SUPABASE_URL` y `SUPABASE_ANON_KEY`. El workflow corre cada ~3 días (y a mano desde la pestaña *Actions*). Ojo: GitHub desactiva los cron de repos sin actividad por 60 días; si pasa, hay que reactivarlo desde *Actions*.
 

@@ -10,10 +10,12 @@
   "scripts": {
     "generar": "node scripts/generar-lote.js",
     "backup": "node scripts/backup.js",
+    "pdf": "node scripts/generar-pdf.js",
     "test": "node --test \"test/*.test.js\""
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
+    "pdfkit": "^0.20.2",
     "qrcode": "^1.5.4"
   },
   "devDependencies": {
