@@ -5,4 +5,4 @@ node_modules/
 # Lotes generados: contienen los códigos de activación en claro
 lotes/
 backups/
-.wrangler/
+.netlify/

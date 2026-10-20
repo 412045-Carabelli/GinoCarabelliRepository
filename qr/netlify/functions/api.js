@@ -1,10 +1,9 @@
-import { rpc, CODIGO_RE } from '../_supabase.js';
+import { rpc, CODIGO_RE } from '../lib/supabase.js';
 
 // POST /api/activar  y  POST /api/editar
 // Body JSON: { codigo, activacion, url }  ->  { ok: boolean }
 // Hace de proxy hacia las RPC de Supabase: la página de activación no necesita
-// conocer la URL ni la clave de Supabase, y se puede poner una regla de rate
-// limiting de Cloudflare sobre /api/*.
+// conocer la URL ni la clave de Supabase, y se puede poner rate limiting sobre /api/*.
 
 const RPC_POR_ACCION = { activar: 'activar_qr', editar: 'editar_qr' };
 const MAX_BODY = 4096;
@@ -15,9 +14,13 @@ const json = (status, cuerpo) =>
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
   });
 
-export async function onRequestPost({ request, env, params }) {
-  const nombreRpc = RPC_POR_ACCION[params.accion];
+export const config = { path: '/api/:accion' };
+
+export default async function handler(request, context) {
+  const env = process.env;
+  const nombreRpc = RPC_POR_ACCION[context.params?.accion];
   if (!nombreRpc) return json(404, { ok: false });
+  if (request.method !== 'POST') return json(405, { ok: false });
 
   // Solo desde nuestra propia página.
   const origin = request.headers.get('Origin');

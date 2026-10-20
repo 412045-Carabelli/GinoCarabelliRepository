@@ -1,9 +1,10 @@
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { onRequestGet as redirigir } from '../functions/r/[codigo].js';
-import { onRequestPost as api } from '../functions/api/[accion].js';
+import redirigir from '../netlify/functions/r.js';
+import api from '../netlify/functions/api.js';
 
-const env = { SUPABASE_URL: 'https://x.supabase.co', SUPABASE_ANON_KEY: 'anon' };
+process.env.SUPABASE_URL = 'https://x.supabase.co';
+process.env.SUPABASE_ANON_KEY = 'anon';
 let llamadas;
 const mockRpc = (respuesta, status = 200) => {
   llamadas = [];
@@ -15,7 +16,7 @@ const mockRpc = (respuesta, status = 200) => {
 beforeEach(() => mockRpc({}));
 
 const get = (codigo) =>
-  redirigir({ request: new Request(`https://qr.ejemplo.com/r/${codigo}`), env, params: { codigo } });
+  redirigir(new Request(`https://qr.ejemplo.com/r/${codigo}`), { params: { codigo } });
 
 test('ok -> 302 al destino, sin cache', async () => {
   mockRpc({ estado: 'ok', url_destino: 'https://destino.com/a' });
@@ -54,15 +55,14 @@ test('error de Supabase -> 503 (no confundir con "no existe")', async () => {
 });
 
 const post = (accion, cuerpo, headers = {}) =>
-  api({
-    request: new Request(`https://qr.ejemplo.com/api/${accion}`, {
+  api(
+    new Request(`https://qr.ejemplo.com/api/${accion}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...headers },
       body: typeof cuerpo === 'string' ? cuerpo : JSON.stringify(cuerpo),
     }),
-    env,
-    params: { accion },
-  });
+    { params: { accion } }
+  );
 
 test('api activar -> llama activar_qr y devuelve solo {ok}', async () => {
   mockRpc({ ok: true });

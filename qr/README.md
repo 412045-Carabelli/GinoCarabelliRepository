@@ -3,7 +3,7 @@
 Cada sticker/placa NFC trae un **QR fijo** (`https://DOMINIO/r/CODIGO`) y un **código de activación**. El cliente entra, pone el código y el link de destino; después puede cambiarlo cuando quiera. Lo impreso nunca cambia.
 
 ```
-QR ─► https://DOMINIO/r/CODIGO ─► Cloudflare Pages Function ─► Supabase RPC resolver_qr
+QR ─► https://DOMINIO/r/CODIGO ─► Netlify Function ─► Supabase RPC resolver_qr
                                      ├─ ok          → 302 al destino
                                      ├─ sin_activar → 302 a /activar?c=CODIGO
                                      └─ otro        → "QR no disponible"
@@ -13,7 +13,7 @@ QR ─► https://DOMINIO/r/CODIGO ─► Cloudflare Pages Function ─► Supab
 | Carpeta | Qué es |
 |---|---|
 | `schema.sql` | Tabla, índices, RLS, funciones RPC, permisos |
-| `functions/` | Pages Functions: `r/[codigo].js` (redirección) y `api/[accion].js` (proxy a las RPC) |
+| `netlify/functions/` | `r.js` (redirección `/r/:codigo`) y `api.js` (proxy `/api/activar` y `/api/editar` a las RPC) |
 | `public/` | Página de activación/edición (HTML + JS puro) |
 | `scripts/generar-lote.js` | Genera lotes: inserta en Supabase y exporta PNG/SVG + CSV |
 | `scripts/backup.js` | Exporta la tabla a CSV |
@@ -28,12 +28,12 @@ Seguridad: RLS activado y sin acceso directo para `anon`; todo pasa por RPC `sec
 2. **SQL Editor** → pegar y correr `schema.sql`.
 3. **Settings → API**: anotar `Project URL`, la clave `anon` y la `service_role`.
 
-### 2. Cloudflare Pages
-1. Subir este repo a GitHub y en Cloudflare: *Workers & Pages → Create → Pages → Connect to Git*.
-2. Configuración de build: **Root directory** `qr` · Build command: *(vacío)* · **Output directory** `public`.
-3. *Settings → Variables and Secrets* (Production): `SUPABASE_URL` y `SUPABASE_ANON_KEY` (la `anon`, nunca la `service_role`).
-4. *Custom domains*: agregar el dominio corto (ej. `qr.tudominio.com`). **Lo que se imprime es siempre este dominio**, nunca `supabase.co` ni `pages.dev`: si algún día cambiás de proveedor, los stickers siguen andando.
-5. Recomendado: *Security → WAF → Rate limiting rules*: limitar `URI Path starts with /api/` a, por ejemplo, 10 requests/minuto por IP (el bloqueo por código ya está en la base; esto agrega el límite por IP).
+### 2. Netlify
+1. Subir este repo a GitHub y en [netlify.com](https://netlify.com): *Add new site → Import an existing project → GitHub* y elegir el repo.
+2. Build settings: **Base directory** `qr` · Build command: *(vacío)* · Publish directory `public` · Functions directory `netlify/functions` (ya lo define `netlify.toml`).
+3. *Site configuration → Environment variables*: crear `SUPABASE_URL` y `SUPABASE_ANON_KEY` (la `anon`, nunca la `service_role`) y volver a desplegar (*Deploys → Trigger deploy*).
+4. *Domain management → Add a domain*: agregar el dominio corto (ej. `qr.tudominio.com`). **Lo que se imprime es siempre este dominio**, nunca `supabase.co` ni `netlify.app`: si algún día cambiás de proveedor, los stickers siguen andando.
+5. El bloqueo por intentos por código ya está en la base. Para un límite por IP sobre `/api/*`, Netlify ofrece rate limiting en `netlify.toml` (según plan); es opcional.
 
 ### 3. Primer lote
 ```bash

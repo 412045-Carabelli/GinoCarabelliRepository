@@ -1,0 +1,5 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# /activar -> /activar/index.html (Netlify lo resuelve solo; sin redirects extra).

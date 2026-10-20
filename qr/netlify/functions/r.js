@@ -1,4 +1,4 @@
-import { rpc, CODIGO_RE, esUrlHttp, paginaHtml } from '../_supabase.js';
+import { rpc, CODIGO_RE, esUrlHttp, paginaHtml } from '../lib/supabase.js';
 
 // 302 (no 301) para que los navegadores no cacheen el destino: si el cliente
 // edita el link, el próximo escaneo ya va al nuevo.
@@ -8,8 +8,11 @@ const redirigir = (location) =>
     headers: { Location: location, 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer' },
   });
 
-export async function onRequestGet({ request, env, params }) {
-  const codigo = String(params.codigo ?? '');
+export const config = { path: '/r/:codigo' };
+
+export default async function handler(request, context) {
+  const env = process.env;
+  const codigo = String(context.params?.codigo ?? '');
   if (!CODIGO_RE.test(codigo)) {
     return paginaHtml(404, 'QR no disponible', 'Este QR no existe o ya no está disponible.');
   }

@@ -1,4 +1,4 @@
-// Helper compartido (no exporta handlers onRequest*, así que Pages no lo publica como ruta).
+// Helper compartido por las Netlify Functions.
 
 export async function rpc(env, nombre, args) {
   if (!env.SUPABASE_URL || !env.SUPABASE_ANON_KEY) {
